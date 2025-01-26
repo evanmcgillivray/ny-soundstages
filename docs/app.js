@@ -5,7 +5,7 @@ const SoundstageDirectory = () => {
   const [boroughFilter, setBoroughFilter] = useState('all');
   
   useEffect(() => {
-    fetch('soundstages.csv')
+    fetch('../data/soundstages.csv')
       .then(response => response.text())
       .then(csvText => {
         const result = Papa.parse(csvText, {
