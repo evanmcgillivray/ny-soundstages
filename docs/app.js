@@ -1,13 +1,11 @@
-const { useState, useEffect } = React;
-
-function SoundstageDirectory() {
+const SoundstageDirectory = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [gridFilter, setGridFilter] = useState('all');
   const [boroughFilter, setBoroughFilter] = useState('all');
   
   useEffect(() => {
-    fetch('../data/soundstages.csv')
+    fetch('soundstages.csv')
       .then(response => response.text())
       .then(csvText => {
         const result = Papa.parse(csvText, {
@@ -33,7 +31,6 @@ function SoundstageDirectory() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-8">NY Soundstages Directory</h1>
-      
       <div className="flex flex-wrap gap-4 mb-6">
         <input
           type="text"
@@ -42,7 +39,6 @@ function SoundstageDirectory() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-1 min-w-[200px] p-2 border rounded"
         />
-        
         <select 
           value={boroughFilter}
           onChange={(e) => setBoroughFilter(e.target.value)}
@@ -53,7 +49,6 @@ function SoundstageDirectory() {
             <option key={borough} value={borough}>{borough}</option>
           ))}
         </select>
-
         <select 
           value={gridFilter}
           onChange={(e) => setGridFilter(e.target.value)}
@@ -64,7 +59,6 @@ function SoundstageDirectory() {
           <option value="Unknown">Grid Unknown</option>
         </select>
       </div>
-
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
@@ -100,7 +94,7 @@ function SoundstageDirectory() {
       </div>
     </div>
   );
-}
+};
 
 ReactDOM.render(
   <SoundstageDirectory />,
