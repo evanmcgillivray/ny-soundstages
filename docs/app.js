@@ -9,35 +9,57 @@ const SoundstageDirectory = () => {
   
   useEffect(() => {
     console.log('Fetching data...');
-    fetch('./data/soundstages.csv')
-      .then(response => {
-        console.log('Response status:', response.status);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(csvText => {
-        console.log('CSV text received:', csvText.substring(0, 100));
-        const result = Papa.parse(csvText, {
-          header: true,
-          skipEmptyLines: true,
-          error: (error) => {
-            console.error('Papa Parse error:', error);
-            setError(error.message);
-          }
-        });
-        console.log('Parsed data:', result);
-        if (result.data && result.data.length > 0) {
-          setData(result.data);
-        } else {
-          setError('No data found in CSV');
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
+    console.log('Attempting to fetch CSV from:', window.location.href);
+    fetch('../data/soundstages.csv')
+  .then(response => {
+    console.log('Response received:', {
+      status: response.status,
+      ok: response.ok,
+      statusText: response.statusText,
+      url: response.url
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+    }
+    return response.text();
+  })
+  .then(csvText => {
+    console.log('CSV length:', csvText.length);
+    console.log('First 100 chars:', csvText.substring(0, 100));
+    
+    const result = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      error: (error) => {
+        console.error('Papa Parse error:', error);
         setError(error.message);
-      });
+      },
+      complete: (results) => {
+        console.log('Parse complete:', {
+          rows: results.data.length,
+          fields: results.meta.fields,
+          errors: results.errors
+        });
+      }
+    });
+
+    if (result.data && result.data.length > 0) {
+      setData(result.data);
+    } else {
+      console.error('No data found in parsed CSV:', result);
+      setError('No data found in CSV');
+    }
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack
+    });
+    setError(`Failed to load CSV: ${error.message}`);
+  });
+
   }, []);
 
   if (error) {
