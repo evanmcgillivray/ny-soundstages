@@ -14,8 +14,10 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/themes": "^3.2.0",
+    "better-sqlite3": "^11.8.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "drizzle-orm": "^0.38.4",
     "lucide-react": "^0.294.0",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",
@@ -36,5 +38,18 @@
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5"
-  }
+  },
+  "description": "A comprehensive directory of New York soundstages with technical specifications including: - Square footage - Lighting grid details - Power capacity - Contact information",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanmcgillivray/ny-soundstages.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evanmcgillivray/ny-soundstages/issues"
+  },
+  "homepage": "https://github.com/evanmcgillivray/ny-soundstages#readme"
 }

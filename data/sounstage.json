@@ -1,0 +1,26 @@
+{
+    "studios": [
+      {
+        "name": "Kaufman Astoria Studios",
+        "websiteUrl": "https://www.kaufmanastoria.com",
+        "squareFootage": 60000,
+        "hasGrid": true,
+        "gridHeight": "40ft",
+        "address": "34-12 36th Street",
+        "borough": "Queens",
+        "phone": "718-392-5600",
+        "email": "info@kaufmanastoria.com",
+        "features": [
+          "Production Office",
+          "Parking"
+        ],
+        "stages": [
+          {
+            "name": "Stage E",
+            "squareFootage": 25000,
+            "gridHeight": "40ft"
+          }
+        ]
+      }
+    ]
+  }
