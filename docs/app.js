@@ -140,4 +140,7 @@ const SoundstageDirectory = () => {
   );
 };
 
-export default SoundstageDirectory;
+ReactDOM.render(
+  <SoundstageDirectory />,
+  document.getElementById('root')
+);
