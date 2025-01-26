@@ -9,7 +9,7 @@ const SoundstageDirectory = () => {
   
   useEffect(() => {
     console.log('Fetching data...');
-    fetch('/data/soundstages.csv')
+    fetch('./data/soundstages.csv')
       .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
